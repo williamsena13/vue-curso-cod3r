@@ -1,0 +1,28 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <p v-once>{{ titulo }}</p>
+  <p>{{ saudacao() }}</p>
+  <p>Autor: <a v-bind:href="link">William</a></p>
+  <hr>
+  {{ linkHTML }}
+</div>
+
+<script>
+
+  new Vue({
+      el: '#app',
+      data: {
+        titulo: 'Usando VueJS Basico',
+        link: 'http://william.bassena.com.br',
+        linkHTML: '<a href="http://william.bassena.com.br">William</a>'
+      },
+      methods: {
+         saudacao(){
+           this.titulo = 'Bom dia!!'
+           return this.titulo
+         }
+      }
+  })
+
+</script>
