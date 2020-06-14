@@ -27,6 +27,93 @@
 
     <div class="container">
       <div class="row">
+        <div class="col-md-6" id="desafio">
+          <h3>Desafio 04</h3>
+          <div class="col-md-12">
+            <h5>Exercicio 01</h5>
+            <p class="center">
+              Iniciar a execução do efeito usando botão. O efeito deve alternadamente trocar as classes "destaque" e <br/>
+              "encolher" para cada chamada de setInteval. Use a div abaixo com id "efeito" para associar as classes CSS.
+            </p>
+            <br/>
+            <div class="demo" :class="{ destaque1: feature, encolher: !feature}" id="efeito"></div>
+            <br/>
+            <div class="center">
+              <button @click="iniciarEfeito">Iniciar Efeito</button>
+            </div>
+          </div><!-- col-md-12 -->
+          <hr/>
+          <div class="col-md-12">
+            <h5>Exercicio 02</h5>
+            <p class="center">Crie duas classes CSS e associe a div usando a sintaxe de array</p>
+            <div class="center" :style="[{backgroundColor: backgroundColor, color: color}]"><b>{{ getHaveClass }}</b></div>
+          </div>
+          <hr/>
+          <div class="col-md-12">
+            <h5>Execicio 03</h5>
+            <p class="center":style="{getStyle}"> Aplique na div abaixo a classe informada pelo usuário (crie classe CSS de exemplo). </p>
+
+            <input type="text"/ v-model="sStyle">
+            <div class="center" :class="getStyle">
+              <small>digite um estilo para aplicar a este local!</small>
+              <br/>
+              <div class="center">
+                <small><strong>Estilo Aplicado:</strong></small>
+                <strong>{{ getStyle }}</strong>
+
+                <h5>Exemplos existentes</h5>
+                <small><strong>clique no estilo desejado para seleciona-lo:</strong></small>
+                <li class="exemplo1" @click="setStyle(1)">exemplo1</li>
+                <li class="exemplo2" @click="setStyle(2)">exemplo2</li>
+                <li class="exemplo3" @click="setStyle(3)">Exemplo3</li>
+                <li class="exemplo4" @click="setStyle(4)">Exemplo4</li>
+              </div><!-- center -->
+            </div><!-- -->
+          </div><!-- -->
+          <hr/>
+          <div class="col-md-12">
+            <h5>Exercicio 04</h5>
+  	        <div class="center">
+              <p class="center"><b>a)</b> Aplique na div abaixo a classe informada pelo usuário</p>
+              <select class="get" @click="setExercicio4( $event.target.value )">
+                <option value="0"  class="preto" >Preto</option>
+                <option value="1" class="vermelho" >Vermelho</option>
+              </select>
+              <br/>
+
+              <div class="demo" :class="{ vermelho: exercicio4, preto : !exercicio4}" @click="exercicio4 =!exercicio4" >{{  }}</div>
+
+              <hr/>
+              <p class="center"><b>b)</b> Aplique outra classe usando o valor true/false (crie classes CSS de exemplo).</p>
+
+
+              <div class="demo" :class="{ vermelho: !exercicio4, preto : exercicio4}" @click="exercicio4 =!exercicio4" >{{  }}</div>
+  	        </div>
+          </div>
+          </hr>
+          <div class="col-md-12">
+  	        <h5>Exercicio 05</h5>
+            <p class="center">Repita 3) mas utilizando estilos ao invés de classes CSS. Associe os estilos a div abaixo</p>
+  	        <div>
+              <input type="text"/>
+  		        <div></div>
+  	        </div>
+          </div>
+          <hr/>
+          <div class="col-md-12">
+  	        <h5>Exercicio 06</h5>
+            <p class="center">Crie uma barra de progresso simples com setInterval e binding de estilo.</p>
+  	        <div class="center">
+  		        <button @click="iniciarProgresso">Iniciar</button>
+  		        <div></div>
+              <hr/>
+              <div class="progress">
+                <div :class="getClassProgress" :class="startProgress"></div>
+              </div>
+              <hr/>
+  	        </div>
+          </div>
+        </div><!-- -->
         <div class="col-md-12" id="style">
           <h2 class="center"><strong>{{ getTitle }}</strong></h2>
           <div class="col-md-12 center">
@@ -34,7 +121,7 @@
           </div>
           <div class="col-md-12 boxes">
             <div class="demo" :class="{ c1: applyC1, c2: !applyC1}" @click="applyC1 =!applyC1" ></div>
-            <div class="demo" :class="{ c1: applyC1, c2: !applyC1 }" @click="applyC1 =!applyC1"></div>
+            <div class="demo" :class="{ c1: !applyC1, c2: applyC1 }" @click="applyC1 =!applyC1"></div>
             <div class="demo" :class="[classCSS, {girar: applyRotate }]" @click="applyRotate =!applyRotate" ></div>
           </div>
           <hr/>
@@ -182,7 +269,6 @@
           <div class="col-md-12">
             <h4><small> 1) </small> Exibir em "resultado" o texto 'Valor Diferente' enquanto "valor" for diferente de 37 - "valor" é alterado pelos botões. Mostrar 'Valor Igual' quando "valor" for igual a 37</h4>
           </div><!-- -->
-
           <div class="col-md-12">
             <h4><small> 2) </small> Monitorar as mudança de "resultado" e reiniciar "valor" para 0 depois de 5 segundos <small>(dica: setTimeout(..., 5000)</small></h4>
           </div><!-- -->
@@ -192,11 +278,9 @@
               <button @click="nValue += 1">Somar 1</button>
               <p>{{ result }}</p>
           </div>
-          </div>
-
         </div>
-
-      </div><!-- container -->>
+      </div><!-- row -->
+    </div><!-- container -->
 
 
 
@@ -207,5 +291,6 @@
     <script src="./js/dom.js"></script>
     <script src="./js/events.js"></script>
     <script src="./js/style.js"></script>
+    <script src="./js/desafio04.js"></script>
   </body>
 </html>

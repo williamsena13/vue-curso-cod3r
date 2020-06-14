@@ -32,7 +32,8 @@ new Vue({
             height: this.altura + 'px'
 
           }
-        }
+        },
+        
 
     },
     methods : {
