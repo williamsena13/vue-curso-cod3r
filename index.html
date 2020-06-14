@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Primeira aplicação VueJS</title>
+    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+
+  <body>
+    <div class="flex-center position-ref full-height" id="">
+      <div class="top-right links">
+        <a href="http://william.bassena.com.br/">Author</a>
+        <a href="">Repository</a>
+        <a href="">Github</a>
+      </div> <!-- top-right -->
+
+      <div class="container center">
+        <div class="row">
+          <br/>
+          <h1 class="position-ref">First VueJS</h1>
+          <br/>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" id="style">
+          <h2 class="center"><strong>{{ getTitle }}</strong></h2>
+          <div class="col-md-12 center">
+            <h3><strong>{{ getDescription }}</strong></h3>
+          </div>
+          <div class="col-md-12 boxes">
+            <div class="demo" :class="{ c1: applyC1, c2: !applyC1}" @click="applyC1 =!applyC1" ></div>
+            <div class="demo" :class="{ c1: applyC1, c2: !applyC1 }" @click="applyC1 =!applyC1"></div>
+            <div class="demo" :class="[classCSS, {girar: applyRotate }]" @click="applyRotate =!applyRotate" ></div>
+          </div>
+          <hr/>
+          <input type="text" v-model="classCSS" name="" value="">
+          <hr/>
+          <div class="col-md-12 boxes">
+            <div class="demo" :style="{ backgroundColor: color}"></div>
+            <div class="demo" :style="[getStyle, { height: altura }]"></div>
+            <div class="demo"></div>
+          </div>
+          <div class="col-md-12">
+            <div class="col-md-4">
+              <label>Cor</label>
+              <input type="text" v-model="color" name="" value="">
+            </div>
+
+            <div class="col-md-4">
+              <label>altura</label>
+              <input type="number" v-model="altura" name="" value="">
+            </div>
+
+            <div class="col-md-4">
+              <label>Largura</label>
+              <input type="number" v-model="largura" name="" value="">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" id="dom">
+          <h2 class="center"><strong>{{ f_title() }}</strong></h2>
+          <div class="col-md-12 center">
+            <h3><strong>{{ f_description() }}</strong></h3>
+          </div>
+          <hr/>
+          <div class="col-md-12">
+            <h4><small>1)</small> Preencha a tag  abaixo com o seu Nome e Idade - usando Interpolação:</h4>
+            <p><small><strong>R:</strong></small> Interpolação: - <strong>{{name}}</strong> (<strong>{{age}}</strong>)</p>
+          </div><!-- col-md -->
+          <hr/>
+          <div class="col-md-12">
+            <h4><small>2)</small> Exiba sua idade multiplicada por 3:</h4>
+            <p><small><strong>R:</strong></small> <strong>{{ age }} * 3 = {{ p_multiplica() }}</strong></p>
+          </div><!-- input-group -->
+          <hr/>
+          <div class="col-md-12">
+            <h4><small>3)</small> Chame uma função para exibir um número randomico  entre 0 and 1 <small> (Math.random())</small> </h4>
+            <p><small><strong>R: </strong></small><strong>{{ p_random() }}</strong> </p>
+          </div><!-- input-group -->
+          <hr/>
+          <div class="col-md-12">
+            <h4><small>4)</small> Procure uma imagem no google e exiba na tag img fazendo o binding no atributo "src"</h4>
+            <img class="img-responsive" v-bind:src="pathImage"/ >
+          </div><!-- input-group -->
+          <hr/>
+          <div class="col-md-12">
+            <h4><small>5)</small> Inicialize o input com o seu nome (use o atributo "value") </h4>
+            <input id="edit_name" class="display" type="text" :value="f_title()" @change="f_change()" />
+          </div><!-- input-group -->
+          <hr/>
+          <div class="col-md-12">
+            <p v-html="linkHTML"></p>
+          </div><!-- -->
+          <hr/>
+        </div><!-- -->
+        <div class="col-md-6" id="events">
+          <h2 class="center"><strong>{{ title }}</strong></h2>
+          <div class="col-md-12 center">
+            <h3><strong>{{ f_description() }}</strong></h3>
+          </div>
+          <hr/>
+          <h2 class="center"> >> Desafio 01</h2>
+          <div class="col-md-12">
+            <h4><small>1)</small> Exiba um alert quando o botão for clicado </h4>
+            <button @click="showAlert">Exibir Alerta</button>
+          </div>
+          <hr/>
+          <div class="col-md-12">
+            <h4><small>2)</small>  Escute o evento "keydown" e armazene o valor na propriedade data</h4>
+            <small>data (dica: event.target.value) </small>
+            <input type="text" @keyup="captureValue($event)">
+            <p>{{ f_value() }}</p>
+          </div>
+          <hr/>
+          <div class="col-md-12">
+            <h4><small>3)</small> Ajuste o exemplo 2 para disparar o evento "keydown" somente quando a tecla for ENTER </h4>
+            <input type="text" @keyup.enter="captureValue($event)">
+            <p>{{ f_value() }}</p>
+          </div>
+          <h3 class="center"><< Desafio 02</h3>
+          <hr/>
+          <div class="col-md-12 center">
+            <h4>Utilizando evento de Click</h4>
+            <p>Nº : {{ count }} <button type="button" name="button" @click="inc()"> + 1 </button></p>
+            <p>{{ ( count > 10 ? 'é maioir que 10' : 'É menor que 10') }}</p>
+          </div>
+          <hr/>
+          <div class="col-md-12 center">
+            <h4>Utilizando paramentro "event"</h4>
+            <p @mousemove="refreshXY"><strong>{{ x }}</strong> <small>e</small> <strong @mousemove="refreshXY">{{ y }}</strong></p>
+          </div>
+          <hr/>
+          <div class="col-md-12 center">
+            <h4>Utilizando evento com parâmetro</h4>
+            <p>
+              Nº : {{ count_param }}
+              <button type="button" name="button" @click="f_incParam( f_parameterInc(), $event )"> + {{ f_parameterInc() }} </button>
+              <input id="edit_parameter_inc" class="display" type="number" :value="f_parameterInc()" @change="f_editParameterInc()" />
+            </p>
+          </div>
+          <hr/>
+          <div class="col-md-12 center">
+            <h4>Utilizando paramentro "event"</h4>
+            <p @mousemove="refreshXY">
+              <strong>{{ x }}</strong> e <strong>{{ y }}</strong>
+              <span @mousemove.stop>NÂO PASSAR AQUI</span>
+            </p>
+          </div>
+          <hr/>
+          <div class="col-md-12 center">
+            <h4>utilizando o click.prevent</h4>
+            <a @click.prevent="" href="https://github.com/"> Bloqueia</a>
+            <a @click.prevent="notNavegation" href="#"> Bloqueia JS</a>
+          </div>
+          <hr/>
+          <div class="col-md-12">
+            <h4>Capturando KeyUp</h4>
+            <input id="edit_eventKey" class="display" type="text" @keyup="showAlert" />
+          </div><!-- input-group -->
+          <div class="col-md-12">
+            <h4>Capturando KeyUp</h4>
+            <h5>Atenção Aqui só será capturado o evento se for pressionado:</h5>
+            <small>Alt</small> + <small>Enter</small>
+            <input id="edit_eventKeyAlt" class="display" type="text" @keyup.enter.alt="showAlert" />
+          </div><!-- input-group -->
+          <hr/>
+          <div class="col-md-12">
+            <h4>Propriedades Computadas</h4>
+            <h5>Aqui será exibido um exemplo de propriedades computadas:</h5>
+            <p>Nº : {{ count }} <button type="button" name="button" @click="inc()"> Calculo 1 </button></p>
+            <p>Nº : {{ count2 }} <button type="button" name="button" @click="count2++">Calculo 2</button></p>
+            <p> {{ ( count > 10 ? 'é maioir que 10' : 'É menor que 10') }}</p>
+            <p>Computado: {{ computedResult }}</p>
+          </div><!-- input-group -->
+          <hr/>
+          <h3>Desafio 03</h3>
+          <div class="col-md-12">
+            <h4><small> 1) </small> Exibir em "resultado" o texto 'Valor Diferente' enquanto "valor" for diferente de 37 - "valor" é alterado pelos botões. Mostrar 'Valor Igual' quando "valor" for igual a 37</h4>
+          </div><!-- -->
+
+          <div class="col-md-12">
+            <h4><small> 2) </small> Monitorar as mudança de "resultado" e reiniciar "valor" para 0 depois de 5 segundos <small>(dica: setTimeout(..., 5000)</small></h4>
+          </div><!-- -->
+          <div class="col-md-12">
+              <p>Valor atual: {{ nValue }}</p>
+              <button @click="nValue += 5">Somar 5</button>
+              <button @click="nValue += 1">Somar 1</button>
+              <p>{{ result }}</p>
+          </div>
+          </div>
+
+        </div>
+
+      </div><!-- container -->>
+
+
+
+    </div><!-- content -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/dom.js"></script>
+    <script src="./js/events.js"></script>
+    <script src="./js/style.js"></script>
+  </body>
+</html>

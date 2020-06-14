@@ -1,0 +1,30 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <p>Nº : {{ count }}</p>
+  <button type="button" name="button" @click="inc()"> {{ value() }} + 1 </button>
+</div>
+
+<script>
+
+  new Vue({
+      el: '#app',
+      data: {
+        count: 0
+      },
+      methods: {
+        inc() {
+          console.log('inc')
+          console.log( this.count );
+          this.count++;
+          return this.count;
+        },
+        value(){
+          console.log('valueinc')
+          return this.count;
+        }
+      }
+
+  })
+
+</script>

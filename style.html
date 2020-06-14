@@ -1,0 +1,54 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<style>
+    .boxes {
+      display: flex;
+      justify-content : space-between;
+    }
+    .demo {
+      width : 100px;
+      height: 100px;
+      background-color: gray;
+    }
+    .c1{
+      background-color : red;
+    }
+    .c2{
+      background-color : green;
+    }
+    .c3{
+      background-color : blue;
+    },
+    
+</style>
+
+<div id="style">
+  <div class="boxes">
+      <div class="demo" :class="{ c1: applyC1, c2: !applyC1}" @click="applyC1 =!applyC1" ></div>
+      <div class="demo" :class="{ c2: applyC1 }" @click="applyC1 =!applyC1"></div>
+      <div class="demo girar" :class="[classCSS, { girar : applyRotate }]"></div>
+  </div>
+  <hr/>
+  <input type="text" v-model="classCSS" name="" value="">
+</div>
+
+<script scoped>
+  new Vue({
+      el : '#style',
+      title : "Estilos ",
+      data: {
+        applyC1 : false,
+        classCSS : 'c1',
+        applyRotate : true,
+      },
+      computed: {
+          style01(){
+            return {
+              c1 : this.applyC1,
+              c2 : !this.applyC1,
+            }
+          }
+      },
+
+  })
+</script>
